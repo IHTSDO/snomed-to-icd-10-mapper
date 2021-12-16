@@ -26,7 +26,7 @@ public class Application implements CommandLineRunner {
 		if (args.isEmpty() || args.contains(ARG_HELP)) {
 			// Help
 			printHelp();
-			System.exit(0);
+			return;
 		}
 
 		try {
