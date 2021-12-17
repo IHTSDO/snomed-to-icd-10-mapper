@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.snomed</groupId>
 	<artifactId>snomed-to-icd10-mapper</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>snomed-to-icd10-mapper</name>
 	<description>Demonstration for mapping SNOMED CT codes to ICD-10 codes using mapping rules.</description>
 	<properties>
