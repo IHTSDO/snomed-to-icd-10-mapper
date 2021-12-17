@@ -14,7 +14,8 @@ IFA 248152002 | Female (finding) |
 Some encounters will be mapped to multiple ICD-10 codes.
 
 ## Running on the command line
-The application can be run from the command line using the jar file available on the [latest release page](https://github.com/IHTSDO/snomed-to-icd-10-mapper/releases).
+The application can be run from the command line using the jar file available on the [latest release page](https://github.com/IHTSDO/snomed-to-icd-10-mapper/releases). Java 11 
+or above is required.
 
 ### Command Line Options:
 ```
