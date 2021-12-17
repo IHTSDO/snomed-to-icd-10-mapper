@@ -33,9 +33,9 @@ public class MapRule implements Comparable<MapRule> {
 		for (String part : parts) {
 			if (mapRule.equals("TRUE") || mapRule.equals("OTHERWISE TRUE")) {
 				ruleParts.add(encounter -> true);
-			} else if (part.equals("IFA 248152002")) {// TODO: Strip terms, use concept IDs only.
+			} else if (part.equals("IFA 248152002")) {// 248152002 |Female (finding)|
 				ruleParts.add(encounter -> encounter.getSex() == Sex.FEMALE);
-			} else if (part.equals("IFA 248153007")) {
+			} else if (part.equals("IFA 248153007")) {// 248153007 |Male (finding)|
 				ruleParts.add(encounter -> encounter.getSex() == Sex.MALE);
 			} else {
 				Matcher matcher = IF_AGE_PREFIX.matcher(part);

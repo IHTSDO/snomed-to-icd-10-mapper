@@ -8,8 +8,8 @@ import java.util.*;
 
 public class MapperService {
 
-	public static final String BATCH_FILE_HEADER = "conceptId\tsex\tageAtEncounterOnset";
-	public static final String OUTPUT_FILE_HEADER = "conceptId\tsex\tageAtEncounterOnset\tICDCodes";
+	public static final String BATCH_FILE_HEADER = "encounterId\tconceptId\tsex\tageAtEncounterOnset";
+	public static final String OUTPUT_FILE_HEADER = "encounterId\tconceptId\tsex\tageAtEncounterOnset\tICDCodes";
 
 	private final Map<Long, List<Set<MapRule>>> snomedToICDMap;
 
@@ -45,12 +45,12 @@ public class MapperService {
 				while ((line = reader.readLine()) != null) {
 					lineNum++;
 					String[] parts = line.split("\t");
-					if (parts.length != 3) {
-						throw new IOException(String.format("Line %s of encounter file has the wrong number tab separated columns, expected 3, found %s.", lineNum, parts.length));
+					if (parts.length != 4) {
+						throw new IOException(String.format("Line %s of encounter file has the wrong number tab separated columns, expected 4, found %s.", lineNum, parts.length));
 					}
-					Long conceptId = Long.parseLong(parts[0]);
-					Sex sex = getSex(parts, lineNum);
-					float age = Float.parseFloat(parts[2]);
+					Long conceptId = Long.parseLong(parts[1]);
+					Sex sex = getSex(parts[2], lineNum);
+					float age = Float.parseFloat(parts[3]);
 					Set<String> icdCodes = mapSnomedCode(new Encounter(conceptId, sex, age));
 					if (!icdCodes.isEmpty()) {
 						encounters++;
@@ -67,8 +67,8 @@ public class MapperService {
 		}
 	}
 
-	private Sex getSex(String[] parts, long lineNum) {
-		String sexString = parts[1].toUpperCase();
+	private Sex getSex(String part, long lineNum) {
+		String sexString = part.toUpperCase();
 		if (sexString.equals(Sex.MALE.toString()) || sexString.equals(Sex.FEMALE.toString())) {
 			return Sex.valueOf(sexString);
 		}
